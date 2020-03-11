@@ -1,0 +1,2 @@
+﻿50492
+C:\Program Files\Godot\Godot_v3.2-Mono\Godot_v3.2-Mono.exe

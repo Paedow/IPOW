@@ -1,0 +1,13 @@
+{
+	"Name": "Toller Map name",
+	"Size": "23,24",
+	"DefaultTile": "
+	"Tiles": [
+		{"class": "hill", "position": "12,13"},
+		{"class": "way", "position": "2,2"},
+		{"class": "enemy_spawner", "position": "5,6", "name": "spawner_0"}
+	],
+	"Waves": [
+		[{"spawner": "spawner_0", "monsters": [...], "rate": "2"},{"spawner": "..."}]
+	]
+}

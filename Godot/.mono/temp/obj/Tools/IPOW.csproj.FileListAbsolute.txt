@@ -1,0 +1,8 @@
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\obj\Tools\IPOW.csprojAssemblyReference.cache
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\bin\Tools\IPOW.dll
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\bin\Tools\IPOW.pdb
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\obj\Tools\IPOW.dll
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\obj\Tools\IPOW.pdb
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\bin\Tools\Newtonsoft.Json.dll
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\bin\Tools\Newtonsoft.Json.xml
+C:\Users\Nightking\Documents\IPOWMono\Godot\.mono\temp\obj\Tools\IPOW.csproj.CopyComplete

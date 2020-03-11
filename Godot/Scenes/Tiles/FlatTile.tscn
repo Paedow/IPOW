@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Shader/Tiles/TileSetShader.shader" type="Shader" id=1]
+[ext_resource path="res://Textures/Tiles/Bukkit_tiles.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Tiles/FlatTile.cs" type="Script" id=3]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/tileOffset = Vector2( 19, 8 )
+shader_param/tiles = Vector2( 28, 28 )
+shader_param/tex = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[node name="FlatTile" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0.25, 0, 0.25 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0.25, -0.125, 0.25 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 0.5, 0, 0, 0, -4.07302e-08, -0.5, 0, 0.25, -8.14603e-08, 0, 0, 0 )
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
