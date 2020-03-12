@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace IPOW.Pathing
+namespace Pathing
 {
     public class PathFinder
     {
@@ -149,6 +149,14 @@ namespace IPOW.Pathing
                 GD.Print("Found path in ", stp.ElapsedMilliseconds, "ms");
             }
             return result;
+        }
+
+        public SplinePath FindPath(PointI start)
+        {
+            PointI[] pts;
+            bool result = FindPath(out pts, start);
+            if (result) return null;
+            return new SplinePath(pts, .5f, new Vector2(.25f, .25f), InterpolationType.Qubic);
         }
     }
 }

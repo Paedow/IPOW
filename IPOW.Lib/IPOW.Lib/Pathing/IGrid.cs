@@ -1,6 +1,6 @@
 using System;
 
-namespace IPOW.Pathing
+namespace Pathing
 {
 	public interface IGrid
 	{

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace IPOW.Pathing
+namespace Pathing
 {
 public class Direction
 {

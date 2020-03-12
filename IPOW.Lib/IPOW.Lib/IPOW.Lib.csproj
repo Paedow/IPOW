@@ -54,10 +54,14 @@
     <Compile Include="JMap\MapData.cs" />
     <Compile Include="JMap\MapLoader.cs" />
     <Compile Include="JMap\MapTileInfo.cs" />
+    <Compile Include="Pathing\AsyncPathUpdater.cs" />
+    <Compile Include="Pathing\CopyGrid.cs" />
     <Compile Include="Pathing\Direction.cs" />
     <Compile Include="Pathing\IGrid.cs" />
     <Compile Include="Pathing\PathFinder.cs" />
     <Compile Include="Pathing\PointI.cs" />
+    <Compile Include="Pathing\Spline.cs" />
+    <Compile Include="Pathing\SplinePath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tEST1.cs" />
   </ItemGroup>
