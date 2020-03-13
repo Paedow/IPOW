@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Godot;
 using Newtonsoft.Json;
-using IPOW.Pathing;
+using Pathing;
 using System.Collections.Generic;
 
 namespace IPOW.JMap
