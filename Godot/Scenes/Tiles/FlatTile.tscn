@@ -1,16 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Shader/Tiles/TileSetShader.shader" type="Shader" id=1]
-[ext_resource path="res://Textures/Tiles/Bukkit_tiles.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Tiles/Grass.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Tiles/FlatTile.cs" type="Script" id=3]
 
 [sub_resource type="QuadMesh" id=1]
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 1 )
-shader_param/tileOffset = Vector2( 19, 8 )
-shader_param/tiles = Vector2( 28, 28 )
-shader_param/tex = ExtResource( 2 )
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 1 )
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.5, 0.5, 0.5 )

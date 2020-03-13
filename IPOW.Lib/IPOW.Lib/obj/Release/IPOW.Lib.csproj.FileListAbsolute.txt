@@ -1,0 +1,15 @@
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\obj\Release\IPOW.Lib.csprojResolveAssemblyReference.cache
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\obj\Release\IPOW.Lib.csproj.CoreCompileInputs.cache
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\IPOW.dll
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\IPOW.pdb
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharp.dll
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharpEditor.dll
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\Newtonsoft.Json.dll
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharp.pdb
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharp.xml
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharpEditor.pdb
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\GodotSharpEditor.xml
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\bin\Release\Newtonsoft.Json.xml
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\obj\Release\IPOW.Lib.csproj.CopyComplete
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\obj\Release\IPOW.dll
+E:\Entwicklung\Godot\IPOW\IPOW.Lib\IPOW.Lib\obj\Release\IPOW.pdb
