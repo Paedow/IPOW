@@ -45,6 +45,14 @@ namespace Pathing
             if (p_x < 0 || p_x >= w || p_y < 0 || p_y >= h) return;
             // Cancel at walls
             if (grid.FieldBlocked(p_x, p_y)) return;
+            // Check if neighbour is much smaller
+            if (p_x >= 1 && p_x < w - 1 && p_y >= 1 && p_y < h - 1)
+            {
+                if (this.hops[p_x, p_y + 1] < hops-1
+                    || this.hops[p_x, p_y - 1] < hops-1
+                    || this.hops[p_x + 1, p_y] < hops-1
+                    || this.hops[p_x - 1, p_y] < hops-1) return;
+            }
             // Check if current hops is already smaller than new hops
             if (this.hops[p_x, p_y] > hops)
             {
@@ -69,30 +77,39 @@ namespace Pathing
             }
         }
 
+        public void Reset(IGrid grid)
+        {
+            this.grid = grid;
+            this.w = grid.GetGridWidth();
+            this.h = grid.GetGridHeight();
+            this.hops = new float[w,h];
+            this.Reset();
+        }
+
         ///<summary>Starts the calculation of the hopcount at the position "end"</summary>
         public void CalcHops(PointI end)
         {
             Stopwatch stp = new Stopwatch();
-            if(printDebug) stp.Start();
+            if (printDebug) stp.Start();
             setHops(end.X, end.Y, 0);
-            if(printDebug)
+            if (printDebug)
             {
                 stp.Stop();
                 GD.Print("Calculated hops in ", stp.ElapsedMilliseconds, "ms");
             }
-            if(printField)
+            if (printField)
             {
                 GD.Print("Field:");
-                for(int y = 0; y < h; y++)
+                for (int y = 0; y < h; y++)
                 {
                     StringBuilder line = new StringBuilder();
                     line.Append("|");
-                    for(int x = 0; x < w; x++)
+                    for (int x = 0; x < w; x++)
                     {
-                        if(grid.FieldBlocked(x,y))
+                        if (grid.FieldBlocked(x, y))
                             line.AppendFormat("###|");
                         else
-                            line.AppendFormat("{0,3}|", this.hops[x,y]);
+                            line.AppendFormat("{0,3}|", this.hops[x, y]);
                     }
                     GD.Print(line.ToString());
                 }
@@ -138,25 +155,17 @@ namespace Pathing
         public bool FindPath(out PointI[] path, PointI start)
         {
             Stopwatch stp = new Stopwatch();
-            if(printDebug) stp.Start();
+            if (printDebug) stp.Start();
             List<PointI> p = new List<PointI>();
             bool result = step(p, start);
             if (result) path = p.ToArray();
             else path = new PointI[0];
-            if(printDebug)
+            if (printDebug)
             {
                 stp.Stop();
                 GD.Print("Found path in ", stp.ElapsedMilliseconds, "ms");
             }
             return result;
-        }
-
-        public SplinePath FindPath(PointI start)
-        {
-            PointI[] pts;
-            bool result = FindPath(out pts, start);
-            if (result) return null;
-            return new SplinePath(pts, .5f, new Vector2(.25f, .25f), InterpolationType.Qubic);
         }
     }
 }

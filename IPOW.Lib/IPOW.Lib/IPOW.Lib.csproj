@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IPOW</RootNamespace>
     <AssemblyName>IPOW</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,11 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
-      <HintPath>..\..\IPOWMono\.mono\assemblies\Release\GodotSharp.dll</HintPath>
+      <HintPath>..\..\Godot\.mono\assemblies\GodotSharp.dll</HintPath>
     </Reference>
     <Reference Include="GodotSharpEditor">
-      <HintPath>..\..\IPOWMono\.mono\assemblies\Release\GodotSharpEditor.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\Godot\.mono\assemblies\GodotSharpEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
