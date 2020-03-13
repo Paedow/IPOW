@@ -1,0 +1,9 @@
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\bin\Debug\IPOW.dll
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\bin\Debug\IPOW.pdb
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\bin\Debug\Newtonsoft.Json.dll
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\bin\Debug\Newtonsoft.Json.xml
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\obj\Debug\IPOW.csproj.CoreCompileInputs.cache
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\obj\Debug\IPOW.csproj.CopyComplete
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\obj\Debug\IPOW.dll
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\obj\Debug\IPOW.pdb
+E:\Entwicklung\Godot\IPOW\Godot\.mono\temp\obj\Debug\IPOW.csprojAssemblyReference.cache
