@@ -3,17 +3,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Tools</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8642B7B-5648-4576-A332-E3587ADB9AB1}</ProjectGuid>
+    <ProjectGuid>{B18D35DE-690F-407F-B078-893A08AC71E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
     <RootNamespace>IPOW</RootNamespace>
     <AssemblyName>IPOW</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <GodotProjectGeneratorVersion>1.0.7333.3918</GodotProjectGeneratorVersion>
+    <GodotProjectGeneratorVersion>1.0.7374.16792</GodotProjectGeneratorVersion>
     <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
     <ApiConfiguration Condition=" '$(Configuration)' != 'Release' ">Debug</ApiConfiguration>
     <ApiConfiguration Condition=" '$(Configuration)' == 'Release' ">Release</ApiConfiguration>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
+    <Compile Include="Scripts\Pathing\MovementLayer.cs" />
+    <Compile Include="Scripts\Pathing\TestGrid.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />
     <Compile Include="Scripts\Tiles\Grid3D.cs" />
+    <Compile Include="Scripts\Tiles\Tile.cs" />
     <Compile Include="Scripts\World.cs" />
-    <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
-    <Compile Include="Scripts\Pathing\TestGrid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
