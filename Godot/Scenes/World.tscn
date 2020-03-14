@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/CameraC.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Tiles/Grid3D.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/World.cs" type="Script" id=2]
 
 [node name="World" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="CameraRig" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2 )
@@ -13,8 +14,5 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.649395, 0.760451, 0, -0.760451, 0.649395, 0, 0, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.539844, 0.841765, 0, -0.841765, 0.539844, 0, 4.51865, 0 )
+transform = Transform( 0.779021, -0.527785, 0.338481, 0, 0.539844, 0.841765, -0.626998, -0.655752, 0.42055, 0, 4.51865, 0 )
 shadow_enabled = true
-
-[node name="Grid3D" type="Spatial" parent="."]
-script = ExtResource( 2 )
