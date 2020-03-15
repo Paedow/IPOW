@@ -9,7 +9,7 @@ namespace IPOW.Tiles
         Camera camera;
         int lastButtonMask = 0;
 
-        public int Width { get; private set; } = 20;
+        public int Width { get; private set; } = 40;
         public int Height { get; private set; } = 20;
 
         public Spatial[,] Grid { get; private set; }
@@ -17,6 +17,7 @@ namespace IPOW.Tiles
         PackedScene sceneTile;
         PackedScene sceneTower;
         Spatial glowTile;
+        Spatial walls;
 
         public override void _Ready()
         {
@@ -35,6 +36,9 @@ namespace IPOW.Tiles
             var sceneGlowTile = GD.Load<PackedScene>("res://Scenes/Objects/TileGlow.tscn");
             glowTile = (Spatial)sceneGlowTile.Instance();
             AddChild(glowTile);
+
+            walls = GetNode<Spatial>("../Walls");
+            walls.Scale = new Vector3(Width / 2, 1, Height / 2);
         }
 
         public override void _Input(InputEvent @event)
