@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using Mouse3D;
-using Pathing;
+using IPOWLib.Pathing;
 
 namespace IPOW.Tiles
 {
@@ -19,8 +19,16 @@ namespace IPOW.Tiles
         PackedScene sceneTower;
         Spatial glowTile;
         Spatial walls;
+        PointI[] endPoints;
+        uint pathversion = 0;
+        World world;
 
         AsyncPathUpdater pathUpdater;
+
+        public Grid3D(World world)
+        {
+            this.world = world;
+        }
 
         public override void _Ready()
         {
@@ -42,6 +50,8 @@ namespace IPOW.Tiles
 
             walls = GetNode<Spatial>("../Walls");
             walls.Scale = new Vector3(Width / 2, 1, Height / 2);
+
+            endPoints = new PointI[] { new PointI(Width - 2, Height / 2) };
         }
 
         public override void _Input(InputEvent @event)
@@ -61,6 +71,10 @@ namespace IPOW.Tiles
                         GD.Print(gPos);
                         Tile tile = (Tile)sceneTower.Instance();
                         SetTile(tile, (int)gPos.x, (int)gPos.y);
+
+                        pathUpdater = new AsyncPathUpdater(GetGrid(MovementLayer.Ground));
+                        pathUpdater.Start();
+                        pathUpdater.Update(endPoints);
                     }
                 }
 
@@ -82,6 +96,15 @@ namespace IPOW.Tiles
                 }
 
                 lastButtonMask = mouseEvent.ButtonMask;
+            }
+        }
+
+        public override void _Process(float delta)
+        {
+            if (pathUpdater != null && pathUpdater.Pathversion != pathversion)
+            {
+                pathversion = pathUpdater.Pathversion;
+                world.UpdatePath(pathUpdater.PathFinder);
             }
         }
 
@@ -110,7 +133,7 @@ namespace IPOW.Tiles
             return 0.5f;
         }
 
-        public Grid GetGrid(Pathing.MovementLayer layer)
+        public Grid GetGrid(MovementLayer layer)
         {
             Grid g = new Grid(Width, Height);
             for(int x = 0; x < Width;x++)

@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using Pathing;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
     public class SplinePath
     {
@@ -37,13 +36,13 @@ namespace Pathing
         }
 
         public SplinePath(PointI[] path, float scale, InterpolationType interpolationType)
-            : this(path, scale, new Vector2(scale/2f, scale/2f), interpolationType) { }
+            : this(path, scale, new Vector2(scale / 2f, scale / 2f), interpolationType) { }
 
         void prepareSpline()
         {
-            if(path.Length == 0)
+            if (path.Length == 0)
                 this.interpolationType = InterpolationType.Null;
-            if(path.Length <= 4 && this.interpolationType == InterpolationType.Qubic)
+            if (path.Length <= 4 && this.interpolationType == InterpolationType.Qubic)
                 this.interpolationType = InterpolationType.Linear;
 
             if (interpolationType == InterpolationType.Qubic)

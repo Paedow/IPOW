@@ -7,9 +7,9 @@
     <ProjectGuid>{8E604BE1-32A0-48DA-818E-2AC58B69363E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IPOW</RootNamespace>
-    <AssemblyName>IPOW</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <RootNamespace>IPOWLib</RootNamespace>
+    <AssemblyName>IPOWLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -58,6 +58,7 @@
     <Compile Include="Pathing\CopyGrid.cs" />
     <Compile Include="Pathing\Direction.cs" />
     <Compile Include="Pathing\IGrid.cs" />
+    <Compile Include="Pathing\MovementLayer.cs" />
     <Compile Include="Pathing\PathFinder.cs" />
     <Compile Include="Pathing\PointI.cs" />
     <Compile Include="Pathing\Spline.cs" />

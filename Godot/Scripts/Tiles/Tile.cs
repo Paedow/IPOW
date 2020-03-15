@@ -1,6 +1,6 @@
 ﻿using System;
 using Godot;
-using IPOW.Pathing;
+using IPOWLib.Pathing;
 
 namespace IPOW.Tiles
 {

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Text;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
     public class Grid : IGrid
     {

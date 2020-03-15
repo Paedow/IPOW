@@ -2,6 +2,7 @@ using Godot;
 using System;
 using IPOW.Tiles;
 using System.Collections.Generic;
+using IPOWLib.Pathing;
 
 public class World : Node
 {
@@ -10,7 +11,7 @@ public class World : Node
 
 	public override void _Ready()
 	{
-		Grid = new Grid3D();
+		Grid = new Grid3D(this);
 		Creeps = new List<Creep>();
 		this.AddChild(Grid);
 
@@ -25,5 +26,13 @@ public class World : Node
 		creep.Setup(this);
 		Creeps.Add(creep);
 		this.AddChild(creep);
+	}
+
+	public void UpdatePath(PathFinder pathFinder)
+	{
+		for(int i = 0; i < Creeps.Count;i++)
+		{
+			Creeps[i].PathsUpdated(pathFinder);
+		}
 	}
 }

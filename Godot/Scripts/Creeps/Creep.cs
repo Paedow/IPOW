@@ -1,16 +1,16 @@
 using Godot;
 using System;
 using IPOW.Tiles;
-using Pathing;
+using IPOWLib.Pathing;
 
 public class Creep : Spatial
 {
-	public IPOW.Pathing.MovementLayer Layer { get; protected set; } = IPOW.Pathing.MovementLayer.Ground;
+	public MovementLayer Layer { get; protected set; } = MovementLayer.Ground;
 	public float MovementSpeed { get; protected set; } = 1;
 	World world;
 	Grid3D grid3d;
 	IGrid grid;
-	Pathing.SplinePath path;
+	SplinePath path;
 	float walkedDistance;
 
 	public virtual void Setup(World world)
@@ -29,7 +29,7 @@ public class Creep : Spatial
 
 	public override void _Process(float delta)
 	{
-		if(path != null)
+		if (path != null)
 		{
 			Vector2 pos = path.GetPoint(walkedDistance);
 			walkedDistance += delta * MovementSpeed;

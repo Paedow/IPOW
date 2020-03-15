@@ -2,10 +2,10 @@
 using System.Runtime.Serialization;
 using Godot;
 using Newtonsoft.Json;
-using Pathing;
+using IPOWLib.Pathing;
 using System.Collections.Generic;
 
-namespace IPOW.JMap
+namespace IPOWLib.JMap
 {
     public class MapData
     {

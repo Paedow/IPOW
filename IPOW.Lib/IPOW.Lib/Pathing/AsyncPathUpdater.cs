@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Thread = System.Threading.Thread;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
     public class AsyncPathUpdater
     {
@@ -13,6 +13,13 @@ namespace Pathing
         SplinePath path;
         PointI[] endPoints;
         public uint Pathversion{get; private set;} = 0;
+        public PathFinder PathFinder
+        {
+            get
+            {
+                return pathFinder;
+            }
+        }
 
         public AsyncPathUpdater(IGrid grid)
         {

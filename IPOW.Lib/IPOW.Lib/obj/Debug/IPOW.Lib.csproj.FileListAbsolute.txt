@@ -1,5 +1,3 @@
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOW.dll
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOW.pdb
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharp.dll
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharpEditor.dll
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\Newtonsoft.Json.dll
@@ -8,8 +6,9 @@ E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharp.xml
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharpEditor.pdb
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharpEditor.xml
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\Newtonsoft.Json.xml
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csprojResolveAssemblyReference.cache
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csproj.CoreCompileInputs.cache
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csproj.CopyComplete
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.dll
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.pdb
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.pdb
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csprojAssemblyReference.cache
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.pdb

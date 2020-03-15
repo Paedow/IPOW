@@ -44,12 +44,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharp.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
     </Reference>
     <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="IPOWLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -57,21 +61,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Creeps\Creep.cs" />
     <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
-    <Compile Include="Scripts\Pathing\AsyncPathUpdater.cs" />
-    <Compile Include="Scripts\Pathing\CopyGrid.cs" />
-    <Compile Include="Scripts\Pathing\Direction.cs" />
-    <Compile Include="Scripts\Pathing\IGrid.cs" />
-    <Compile Include="Scripts\Pathing\MovementLayer.cs" />
-    <Compile Include="Scripts\Pathing\PathFinder.cs" />
-    <Compile Include="Scripts\Pathing\PointI.cs" />
-    <Compile Include="Scripts\Pathing\Spline.cs" />
-    <Compile Include="Scripts\Pathing\SplinePath.cs" />
     <Compile Include="Scripts\Pathing\TestGrid.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />
     <Compile Include="Scripts\Tiles\Grid3D.cs" />
     <Compile Include="Scripts\Tiles\Tile.cs" />
     <Compile Include="Scripts\Tiles\Tower.cs" />
     <Compile Include="Scripts\World.cs" />
+    <Compile Include="Scripts\Creeps\GroundCreep.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
