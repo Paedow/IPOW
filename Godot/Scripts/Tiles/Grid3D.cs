@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Mouse3D;
+using Pathing;
 
 namespace IPOW.Tiles
 {
@@ -12,24 +13,26 @@ namespace IPOW.Tiles
         public int Width { get; private set; } = 40;
         public int Height { get; private set; } = 20;
 
-        public Spatial[,] Grid { get; private set; }
+        public Tile[,] Grid { get; private set; }
 
         PackedScene sceneTile;
         PackedScene sceneTower;
         Spatial glowTile;
         Spatial walls;
 
+        AsyncPathUpdater pathUpdater;
+
         public override void _Ready()
         {
             camera = GetNode<Camera>(new NodePath("../CameraRig/Camera"));
-            this.Grid = new Spatial[Width, Height];
+            this.Grid = new Tile[Width, Height];
 
             sceneTile = GD.Load<PackedScene>("res://Scenes/Tiles/FlatTile.tscn");
             sceneTower = GD.Load<PackedScene>("res://Scenes/Tiles/TestTower.tscn");
             for (int x = 0; x < Width; x++)
                 for (int y = 0; y < Height; y++)
                 {
-                    Spatial tile = (Spatial)sceneTile.Instance();
+                    Tile tile = (Tile)sceneTile.Instance();
                     SetTile(tile, x, y);
                 }
 
@@ -56,7 +59,7 @@ namespace IPOW.Tiles
                         gPos.x = (int)(gPos.x * 2);
                         gPos.y = (int)(gPos.y * 2);
                         GD.Print(gPos);
-                        Spatial tile = (Spatial)sceneTower.Instance();
+                        Tile tile = (Tile)sceneTower.Instance();
                         SetTile(tile, (int)gPos.x, (int)gPos.y);
                     }
                 }
@@ -82,7 +85,7 @@ namespace IPOW.Tiles
             }
         }
 
-        public void SetTile(Spatial tile, int x, int y)
+        public void SetTile(Tile tile, int x, int y)
         {
             if (x < 0 || y < 0 || x >= Width || y >= Height) return;
             if (this.Grid[x, y] != null)
@@ -105,6 +108,19 @@ namespace IPOW.Tiles
         public float GetGridSize()
         {
             return 0.5f;
+        }
+
+        public Grid GetGrid(Pathing.MovementLayer layer)
+        {
+            Grid g = new Grid(Width, Height);
+            for(int x = 0; x < Width;x++)
+            {
+                for(int y = 0; y < Height; y++)
+                {
+                    g.SetField(x, y, Grid[x, y].IsBlocked(layer));
+                }
+            }
+            return g;
         }
     }
 }
