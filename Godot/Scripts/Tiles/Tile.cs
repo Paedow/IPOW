@@ -11,7 +11,7 @@ namespace IPOW.Tiles
         public int X { get; private set; } = 0;
         public int Y { get; private set; } = 0;
 
-        public void SetPosition(Grid3D parent, int x, int y)
+        public virtual void SetPosition(Grid3D parent, int x, int y)
         {
             this.ParentGrid = parent;
             float scale = parent.GetGridSize();
