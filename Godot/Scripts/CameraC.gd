@@ -1,7 +1,7 @@
 extends Spatial
 
 const BUTTON_WHEEL = 4;
-const camW = 3;
+const camW = 12;
 
 var lpos = Vector2.INF;
 var pos= Vector2.INF;
@@ -21,7 +21,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(posPress):
-		var dp = -(pos-lpos)/100;
+		var dp = -(pos-lpos)/50;
 		var shift = Vector3(dp.x,0,dp.y);
 		translate(shift);
 	if(rotPress):

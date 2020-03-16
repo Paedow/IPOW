@@ -35,4 +35,12 @@ public class World : Node
 			Creeps[i].PathsUpdated(pathFinder);
 		}
 	}
+
+	public void GridChanged()
+	{
+		for (int i = 0; i < Creeps.Count; i++)
+		{
+			Creeps[i].GridChanged();
+		}
+	}
 }

@@ -9,6 +9,5 @@ E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\Newtonsoft.Json.xml
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csproj.CopyComplete
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.dll
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.pdb
-E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOW.Lib.csprojAssemblyReference.cache
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.dll
 E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.pdb

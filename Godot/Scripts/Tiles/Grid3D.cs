@@ -23,7 +23,7 @@ namespace IPOW.Tiles
         uint pathversion = 0;
         World world;
 
-        AsyncPathUpdater pathUpdater;
+        AsyncPathUpdater pathUpdaterGround;
 
         public Grid3D(World world)
         {
@@ -49,9 +49,10 @@ namespace IPOW.Tiles
             AddChild(glowTile);
 
             walls = GetNode<Spatial>("../Walls");
-            walls.Scale = new Vector3(Width / 2, 1, Height / 2);
+            walls.Scale = new Vector3(Width, 1, Height);
 
             endPoints = new PointI[] { new PointI(Width - 2, Height / 2) };
+            pathUpdaterGround = new AsyncPathUpdater(GetGrid(MovementLayer.Ground));
         }
 
         public override void _Input(InputEvent @event)
@@ -66,26 +67,23 @@ namespace IPOW.Tiles
                     if (pos.HasValue && pos.Value.x > 0 && pos.Value.z > 0)
                     {
                         Vector2 gPos = new Vector2(pos.Value.x, pos.Value.z);
-                        gPos.x = (int)(gPos.x * 2);
-                        gPos.y = (int)(gPos.y * 2);
+                        gPos.x = (int)(gPos.x);
+                        gPos.y = (int)(gPos.y);
                         GD.Print(gPos);
                         Tile tile = (Tile)sceneTower.Instance();
                         SetTile(tile, (int)gPos.x, (int)gPos.y);
-
-                        pathUpdater = new AsyncPathUpdater(GetGrid(MovementLayer.Ground));
-                        pathUpdater.Start();
-                        pathUpdater.Update(endPoints);
+                        pathUpdaterGround.Update(GetGrid(MovementLayer.Ground), endPoints);
                     }
                 }
 
                 if (pos.HasValue)
                 {
                     Vector3 iPos = new Vector3(
-                        ((int)(pos.Value.x * 2) / 2f),
-                        ((int)(pos.Value.y * 2) / 2f),
-                        ((int)(pos.Value.z * 2) / 2f));
+                        ((int)pos.Value.x),
+                        ((int)pos.Value.y),
+                        ((int)pos.Value.z));
                     glowTile.Translation = iPos;
-                    if(iPos.x < 0 || iPos.z < 0 || iPos.x*2 >= Width||iPos.z*2 >= Height)
+                    if(iPos.x < 0 || iPos.z < 0 || iPos.x >= Width||iPos.z >= Height)
                     {
                         glowTile.Visible = false;
                     }
@@ -101,10 +99,10 @@ namespace IPOW.Tiles
 
         public override void _Process(float delta)
         {
-            if (pathUpdater != null && pathUpdater.Pathversion != pathversion)
+            if (pathUpdaterGround != null && pathUpdaterGround.Pathversion != pathversion)
             {
-                pathversion = pathUpdater.Pathversion;
-                world.UpdatePath(pathUpdater.PathFinder);
+                pathversion = pathUpdaterGround.Pathversion;
+                world.UpdatePath(pathUpdaterGround.PathFinder);
             }
         }
 
@@ -126,11 +124,12 @@ namespace IPOW.Tiles
             }
             this.Grid[x, y] = tile;
             this.AddChild(tile);
+            world.GridChanged();
         }
 
         public float GetGridSize()
         {
-            return 0.5f;
+            return 1;
         }
 
         public Grid GetGrid(MovementLayer layer)

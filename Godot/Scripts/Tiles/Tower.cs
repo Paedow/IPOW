@@ -8,6 +8,9 @@ namespace IPOW.Tiles
 {
 	public class Tower : Tile
 	{
-
+		public Tower()
+		{
+			BlockedLayer = IPOWLib.Pathing.MovementLayer.Ground | IPOWLib.Pathing.MovementLayer.Water;
+		}
 	}
 }

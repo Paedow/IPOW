@@ -37,7 +37,6 @@ namespace Pathing
 			end = new PointI[] { new PointI(19, 14), new PointI(1, 14) };
 
 			pathUpdater = new AsyncPathUpdater(this);
-			pathUpdater.Start();
 		}
 
 		public bool FieldBlocked(int x, int y)

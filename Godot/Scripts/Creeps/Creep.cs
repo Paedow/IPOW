@@ -46,8 +46,11 @@ public class Creep : Spatial
 	public virtual void PathsUpdated(PathFinder pathFinder)
 	{
 		PointI[] points;
-		pathFinder.FindPath(out points, new PointI(0, 0));
-		path = new SplinePath(points, grid3d.GetGridSize(), InterpolationType.Qubic);
+		float gridSize = this.grid3d.GetGridSize();
+		PointI nextGrid = new PointI((int)(Translation.x / gridSize), (int)(Translation.z / gridSize));
+		pathFinder.FindPath(out points, nextGrid);
+		GD.Print("Path update, size: ", points.Length);
+		if(points.Length > 1) path = new SplinePath(points, grid3d.GetGridSize(), InterpolationType.Qubic);
 		walkedDistance = 0;
 	}
 }

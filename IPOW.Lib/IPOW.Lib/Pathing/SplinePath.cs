@@ -42,6 +42,8 @@ namespace IPOWLib.Pathing
         {
             if (path.Length == 0)
                 this.interpolationType = InterpolationType.Null;
+            if (path.Length == 1)
+                this.interpolationType = InterpolationType.Point;
             if (path.Length <= 4 && this.interpolationType == InterpolationType.Qubic)
                 this.interpolationType = InterpolationType.Linear;
 
@@ -81,6 +83,10 @@ namespace IPOWLib.Pathing
                         float y = splineY.GetVal(t);
                         return new Vector2(x, y);
                     }
+                case InterpolationType.Point:
+                    {
+                        return path[0];
+                    }
                 default:
                     return new Vector2(0, 0);
             }
@@ -91,6 +97,7 @@ namespace IPOWLib.Pathing
     {
         Linear = 1,
         Qubic = 2,
-        Null = 3
+        Null = 3,
+        Point = 4
     }
 }
