@@ -8,6 +8,7 @@ namespace IPOWLib.Pathing
 {
     public enum MovementLayer
     {
+        ALL = 255,
         Ground = 1,
         Air = 2,
         Underground = 4,

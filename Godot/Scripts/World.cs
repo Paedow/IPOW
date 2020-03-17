@@ -3,6 +3,7 @@ using System;
 using IPOW.Tiles;
 using System.Collections.Generic;
 using IPOWLib.Pathing;
+using IPOW.Creeps;
 
 public class World : Node
 {

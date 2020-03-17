@@ -15,8 +15,7 @@ namespace IPOW.Tiles
 
         public Tile[,] Grid { get; private set; }
 
-        PackedScene sceneTile;
-        PackedScene sceneTower;
+        PackedScene sceneTile, sceneTower, sceneHill;
         Spatial glowTile;
         Spatial walls;
         PointI[] endPoints;
@@ -37,12 +36,25 @@ namespace IPOW.Tiles
 
             sceneTile = GD.Load<PackedScene>("res://Scenes/Tiles/FlatTile.tscn");
             sceneTower = GD.Load<PackedScene>("res://Scenes/Tiles/TestTower.tscn");
+            sceneHill = GD.Load<PackedScene>("res://Scenes/Tiles/Hill.tscn");
             for (int x = 0; x < Width; x++)
                 for (int y = 0; y < Height; y++)
                 {
                     Tile tile = (Tile)sceneTile.Instance();
-                    SetTile(tile, x, y);
+                    SetTile(tile, x, y, false);
                 }
+
+            for (int x = 10; x < Width - 10; x++)
+            {
+                for (int y = 0; y < Height / 2 - 2; y++)
+                {
+                    Tile tile = (Tile)sceneHill.Instance();
+                    SetTile(tile, x, y, false);
+                    tile = (Tile)sceneHill.Instance();
+                    SetTile(tile, x, Height - y, false);
+                }
+            }
+            GridReady();
 
             var sceneGlowTile = GD.Load<PackedScene>("res://Scenes/Objects/TileGlow.tscn");
             glowTile = (Spatial)sceneGlowTile.Instance();
@@ -83,7 +95,7 @@ namespace IPOW.Tiles
                         ((int)pos.Value.y),
                         ((int)pos.Value.z));
                     glowTile.Translation = iPos;
-                    if(iPos.x < 0 || iPos.z < 0 || iPos.x >= Width||iPos.z >= Height)
+                    if (iPos.x < 0 || iPos.z < 0 || iPos.x >= Width || iPos.z >= Height)
                     {
                         glowTile.Visible = false;
                     }
@@ -106,7 +118,7 @@ namespace IPOW.Tiles
             }
         }
 
-        public void SetTile(Tile tile, int x, int y)
+        public void SetTile(Tile tile, int x, int y, bool update = true)
         {
             if (x < 0 || y < 0 || x >= Width || y >= Height) return;
             if (this.Grid[x, y] != null)
@@ -124,7 +136,11 @@ namespace IPOW.Tiles
             }
             this.Grid[x, y] = tile;
             this.AddChild(tile);
-            world.GridChanged();
+            if (update)
+            {
+                world.GridChanged();
+                GridReady();
+            }
         }
 
         public float GetGridSize()
@@ -135,14 +151,25 @@ namespace IPOW.Tiles
         public Grid GetGrid(MovementLayer layer)
         {
             Grid g = new Grid(Width, Height);
-            for(int x = 0; x < Width;x++)
+            for (int x = 0; x < Width; x++)
             {
-                for(int y = 0; y < Height; y++)
+                for (int y = 0; y < Height; y++)
                 {
                     g.SetField(x, y, Grid[x, y].IsBlocked(layer));
                 }
             }
             return g;
+        }
+
+        public void GridReady()
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    Grid[x, y].GridReady(this, x, y);
+                }
+            }
         }
     }
 }

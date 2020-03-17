@@ -64,6 +64,8 @@
     <Compile Include="Scripts\Pathing\TestGrid.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />
     <Compile Include="Scripts\Tiles\Grid3D.cs" />
+    <Compile Include="Scripts\Tiles\Hill.cs" />
+    <Compile Include="Scripts\Tiles\SurroundingTilemap.cs" />
     <Compile Include="Scripts\Tiles\Tile.cs" />
     <Compile Include="Scripts\Tiles\Tower.cs" />
     <Compile Include="Scripts\World.cs" />

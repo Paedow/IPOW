@@ -23,5 +23,10 @@ namespace IPOW.Tiles
         {
             return ((BlockedLayer & layer) != 0) ;
         }
+
+        public virtual void GridReady(Grid3D parent, int x, int y)
+        {
+
+        }
     }
 }
