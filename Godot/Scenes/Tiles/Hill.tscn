@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Textures/Tiles/Grass.png" type="Texture" id=1]
 [ext_resource path="res://Textures/Tiles/mat_hillwall.tres" type="Material" id=2]
 [ext_resource path="res://Scripts/Tiles/Hill.cs" type="Script" id=3]
 [ext_resource path="res://Models/Tiles/HillCorner1.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Models/Tiles/HillWall.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://Models/Tiles/HillCorner2.obj" type="ArrayMesh" id=6]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -50,6 +51,7 @@ __meta__ = {
 
 [node name="MeshWall" type="MeshInstance" parent="Rotator"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5 )
+visible = false
 mesh = ExtResource( 5 )
 material/0 = ExtResource( 2 )
 __meta__ = {
@@ -58,6 +60,7 @@ __meta__ = {
 
 [node name="MeshCorner1" type="MeshInstance" parent="Rotator"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5 )
+visible = false
 mesh = ExtResource( 4 )
 material/0 = ExtResource( 2 )
 __meta__ = {
@@ -68,6 +71,14 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 0, -0.5 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MeshCorner2" type="MeshInstance" parent="Rotator"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.5, 0, 0.5 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }

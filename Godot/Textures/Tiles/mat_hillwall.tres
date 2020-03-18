@@ -1,4 +1,7 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Textures/Tiles/Grass.png" type="Texture" id=1]
 
 [resource]
-albedo_color = Color( 0.298039, 0.498039, 0.270588, 1 )
+albedo_color = Color( 0.184314, 0.752941, 0, 1 )
+albedo_texture = ExtResource( 1 )

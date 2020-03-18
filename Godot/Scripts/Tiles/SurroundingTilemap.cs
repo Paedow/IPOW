@@ -16,7 +16,7 @@ namespace IPOW.Tiles
             this.bottom = bottom;
         }
 
-        public bool MatchPattern(Grid3D grid, int x, int y, params Type[] types)
+        public virtual bool MatchPattern(Grid3D grid, int x, int y, params Type[] types)
         {
             return isType(grid, x, y - 1, types) == top
                 && isType(grid, x - 1, y, types) == left
@@ -24,7 +24,7 @@ namespace IPOW.Tiles
                 && isType(grid, x, y + 1, types) == bottom;
         }
 
-        bool isType(Grid3D grid, int x, int y, Type[] types)
+        protected bool isType(Grid3D grid, int x, int y, Type[] types)
         {
             if (x < 0 || y < 0 || x >= grid.Width || y >= grid.Height)
                 return false;
@@ -32,6 +32,28 @@ namespace IPOW.Tiles
                 if (t.IsInstanceOfType(grid.Grid[x, y]))
                     return true;
             return false;
+        }
+    }
+
+    public class SurroundingTilemapDiag : SurroundingTilemap
+    {
+        bool tl, tr, bl, br;
+
+        public SurroundingTilemapDiag(bool tl, bool tr, bool bl, bool br)
+            : base(true, true, true, true)
+        {
+            this.tl = tl;
+            this.tr = tr;
+            this.bl = bl;
+            this.br = br;
+        }
+
+        public override bool MatchPattern(Grid3D grid, int x, int y, params Type[] types)
+        {
+            return isType(grid, x - 1, y - 1, types) == tl
+                && isType(grid, x - 1, y + 1, types) == tr
+                && isType(grid, x + 1, y - 1, types) == bl
+                && isType(grid, x + 1, y + 1, types) == br;
         }
     }
 }

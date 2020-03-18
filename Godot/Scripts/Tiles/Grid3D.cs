@@ -44,7 +44,7 @@ namespace IPOW.Tiles
                     SetTile(tile, x, y, false);
                 }
 
-            for (int x = 10; x < Width - 10; x++)
+            for (int x = 5; x < Width - 10; x++)
             {
                 for (int y = 0; y < Height / 2 - 2; y++)
                 {
