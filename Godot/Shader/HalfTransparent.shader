@@ -9,5 +9,5 @@ void fragment()
 	bool xOdd = (pUV.x % 2) == 0;
 	bool yOdd = (pUV.y % 2) == 0;
 	ALBEDO = Color.rgb;
-	if(xOdd == yOdd) ALPHA = 0.;
+	if(xOdd == yOdd) discard;
 }

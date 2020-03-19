@@ -7,5 +7,5 @@ void fragment()
 {
 	vec4 color = texture(Texture, UV);
 	ALBEDO = color.rgb;
-	if(color.a < .5) ALPHA = 0.;
+	if(color.a < .5) discard;
 }

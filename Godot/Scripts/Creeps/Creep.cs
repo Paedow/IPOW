@@ -9,11 +9,17 @@ namespace IPOW.Creeps
 	{
 		public MovementLayer Layer { get; protected set; } = MovementLayer.Ground;
 		public float MovementSpeed { get; protected set; } = 1;
+		public bool Blocked { get; protected set; } = false;
 		World world;
 		Grid3D grid3d;
 		IGrid grid;
 		SplinePath path;
 		float walkedDistance;
+		bool shouldCalcNew = false;
+		PointI[] points;
+		PathFinder pathFinder = null;
+		static PackedScene excplamation = null;
+		Spatial exclamationInst;
 
 		public virtual void Setup(World world)
 		{
@@ -27,10 +33,37 @@ namespace IPOW.Creeps
 		{
 			path = null;
 			walkedDistance = 0;
+			if(excplamation == null)
+			{
+				excplamation = GD.Load<PackedScene>("res://Scenes/Objects/Exclamation.tscn");
+			}
+			exclamationInst = (Spatial)excplamation.Instance();
+			AddChild(exclamationInst);
+			exclamationInst.Visible = false;
 		}
 
 		public override void _Process(float delta)
 		{
+			if (shouldCalcNew && ((int)walkedDistance < (int)(walkedDistance + delta * MovementSpeed) || path == null))
+			{
+				shouldCalcNew = false;
+				float gridSize = this.grid3d.GetGridSize();
+				PointI nextGrid = new PointI((int)(Translation.x / gridSize), (int)(Translation.z / gridSize));
+				if (pathFinder.FindPath(out points, nextGrid))
+				{
+					if (points.Length > 1) path = new SplinePath(points, grid3d.GetGridSize(), InterpolationType.Qubic);
+					Blocked = false;
+					exclamationInst.Visible = false;
+				}
+				else
+				{
+					Blocked = true;
+					path = null;
+					walkedDistance = 0;
+					exclamationInst.Visible = true;
+				}
+				walkedDistance = 0;
+			}
 			if (path != null)
 			{
 				Vector2 pos = path.GetPoint(walkedDistance);
@@ -47,13 +80,8 @@ namespace IPOW.Creeps
 
 		public virtual void PathsUpdated(PathFinder pathFinder)
 		{
-			PointI[] points;
-			float gridSize = this.grid3d.GetGridSize();
-			PointI nextGrid = new PointI((int)(Translation.x / gridSize), (int)(Translation.z / gridSize));
-			pathFinder.FindPath(out points, nextGrid);
-			GD.Print("Path update, size: ", points.Length);
-			if (points.Length > 1) path = new SplinePath(points, grid3d.GetGridSize(), InterpolationType.Qubic);
-			walkedDistance = 0;
+			shouldCalcNew = true;
+			this.pathFinder = pathFinder;
 		}
 	}
 }
