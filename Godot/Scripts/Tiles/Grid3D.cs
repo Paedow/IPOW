@@ -15,7 +15,7 @@ namespace IPOW.Tiles
 
         public Tile[,] Grid { get; private set; }
 
-        PackedScene sceneTile, sceneTower, sceneHill;
+        PackedScene sceneTile, sceneTower, sceneHill, sceneCobble;
         Spatial glowTile;
         Spatial walls;
         PointI[] endPoints;
@@ -37,6 +37,7 @@ namespace IPOW.Tiles
             sceneTile = GD.Load<PackedScene>("res://Scenes/Tiles/FlatTile.tscn");
             sceneTower = GD.Load<PackedScene>("res://Scenes/Tiles/TestTower.tscn");
             sceneHill = GD.Load<PackedScene>("res://Scenes/Tiles/Hill.tscn");
+            sceneCobble = GD.Load<PackedScene>("res://Scenes/Tiles/FlatCobble.tscn");
             for (int x = 0; x < Width; x++)
                 for (int y = 0; y < Height; y++)
                 {
@@ -46,9 +47,11 @@ namespace IPOW.Tiles
 
             for (int x = 5; x < Width - 10; x++)
             {
+                Tile tile = (Tile)sceneCobble.Instance();
+                SetTile(tile, x, Height/2, false);
                 for (int y = 0; y < Height / 2 - 2; y++)
                 {
-                    Tile tile = (Tile)sceneHill.Instance();
+                    tile = (Tile)sceneHill.Instance();
                     SetTile(tile, x, y, false);
                     tile = (Tile)sceneHill.Instance();
                     SetTile(tile, x, Height - y, false);
@@ -81,10 +84,12 @@ namespace IPOW.Tiles
                         Vector2 gPos = new Vector2(pos.Value.x, pos.Value.z);
                         gPos.x = (int)(gPos.x);
                         gPos.y = (int)(gPos.y);
-                        GD.Print(gPos);
-                        Tile tile = (Tile)sceneTower.Instance();
-                        SetTile(tile, (int)gPos.x, (int)gPos.y);
-                        pathUpdaterGround.Update(GetGrid(MovementLayer.Ground), endPoints);
+                        if (Grid[(int)gPos.x, (int)gPos.y].CanPlaceOn)
+                        {
+                            Tile tile = (Tile)sceneTower.Instance();
+                            SetTile(tile, (int)gPos.x, (int)gPos.y);
+                            pathUpdaterGround.Update(GetGrid(MovementLayer.Ground), endPoints);
+                        }
                     }
                 }
 
@@ -102,6 +107,9 @@ namespace IPOW.Tiles
                     else
                     {
                         glowTile.Visible = true;
+                        Tile t = Grid[(int)iPos.x, (int)iPos.z];
+                        if (t.CanPlaceOn) glowTile.Call("blue");
+                        else glowTile.Call("red");
                     }
                 }
 

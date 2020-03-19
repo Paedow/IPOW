@@ -8,6 +8,7 @@ namespace IPOW.Tiles
     {
         public MovementLayer BlockedLayer { get; protected set; } = 0;
         public Grid3D ParentGrid { get; protected set; } = null;
+        public bool CanPlaceOn{get;protected set;} = false;
         public int X { get; private set; } = 0;
         public int Y { get; private set; } = 0;
 
