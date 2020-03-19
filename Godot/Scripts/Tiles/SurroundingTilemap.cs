@@ -56,4 +56,34 @@ namespace IPOW.Tiles
                 && isType(grid, x + 1, y + 1, types) == br;
         }
     }
+
+    public class SurroundingTilemapFull : SurroundingTilemap
+    {
+        bool tl, t, tr, l, r, bl, b, br;
+
+        public SurroundingTilemapFull(bool tl, bool t, bool tr, bool l, bool r, bool bl, bool b, bool br)
+            : base(true, true, true, true)
+        {
+            this.tl = tl;
+            this.t = t;
+            this.tr = tr;
+            this.l = l;
+            this.r = r;
+            this.bl = bl;
+            this.b = b;
+            this.br = br;
+        }
+
+        public override bool MatchPattern(Grid3D grid, int x, int y, params Type[] types)
+        {
+            return isType(grid, x - 1, y - 1, types) == tl
+                && isType(grid, x - 1, y + 1, types) == tr
+                && isType(grid, x + 1, y - 1, types) == bl
+                && isType(grid, x + 1, y + 1, types) == br
+                && isType(grid, x, y - 1, types) == t
+                && isType(grid, x - 1, y, types) == l
+                && isType(grid, x + 1, y, types) == r
+                && isType(grid, x, y + 1, types) == b;
+        }
+    }
 }
