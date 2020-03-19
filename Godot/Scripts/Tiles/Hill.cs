@@ -8,7 +8,7 @@ namespace IPOW.Tiles
 	{
 		SurroundingTilemap[] tilemaps = new SurroundingTilemap[]{
 			// Fully surrounded
-			new SurroundingTilemap(true,true,true,true),
+			new SurroundingTilemapFull(true,true,true,true, true, true, true,true),
 			// Border
 			new SurroundingTilemap(true,true,true,false),
 			new SurroundingTilemap(true, true,false,true),
@@ -29,7 +29,7 @@ namespace IPOW.Tiles
 			0,
 			0,90,-90,180,
 			0,90,-90,180,
-			0,90,-90,180
+			0,-90,180,90
 		};
 		MeshInstance[] visibleObjects;
 

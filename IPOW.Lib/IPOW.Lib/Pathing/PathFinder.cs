@@ -119,6 +119,11 @@ namespace IPOWLib.Pathing
         ///<summary>Makes one step of the Path</summary>
         bool step(List<PointI> path, PointI point)
         {
+            // Check if point is outside Grid
+            if (point.X < 0 || point.X >= w 
+                || point.Y < 0 || point.Y >= h) 
+                    return false;
+
             // If point is at an endpoint, return true
             if (this.hops[point.X, point.Y] == 0)
             {
