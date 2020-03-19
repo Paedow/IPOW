@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
     public class PathFinder
     {

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IPOW.Pathing
+namespace IPOWLib.Pathing
 {
     public enum MovementLayer
     {
+        ALL = 255,
         Ground = 1,
         Air = 2,
         Underground = 4,

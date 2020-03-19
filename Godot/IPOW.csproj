@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Tools</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B18D35DE-690F-407F-B078-893A08AC71E2}</ProjectGuid>
+    <ProjectGuid>{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
     <RootNamespace>IPOW</RootNamespace>
@@ -51,20 +51,25 @@
       <Private>False</Private>
       <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
     </Reference>
-    <Reference Include="IPOW">
-      <HintPath>..\IPOW.Lib\IPOW.Lib\bin\Release\IPOW.dll</HintPath>
+    <Reference Include="IPOWLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Creeps\Creep.cs" />
     <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
-    <Compile Include="Scripts\Pathing\MovementLayer.cs" />
     <Compile Include="Scripts\Pathing\TestGrid.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />
     <Compile Include="Scripts\Tiles\Grid3D.cs" />
+    <Compile Include="Scripts\Tiles\Hill.cs" />
+    <Compile Include="Scripts\Tiles\SurroundingTilemap.cs" />
     <Compile Include="Scripts\Tiles\Tile.cs" />
+    <Compile Include="Scripts\Tiles\Tower.cs" />
     <Compile Include="Scripts\World.cs" />
+    <Compile Include="Scripts\Creeps\GroundCreep.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

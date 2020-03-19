@@ -1,0 +1,8 @@
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\.NETFramework,Version=v4.5.AssemblyAttribute.cs
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.pdb
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\IPOWLib.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\obj\Debug\IPOWLib.pdb
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharp.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\GodotSharpEditor.dll
+E:\Entwicklung\Godot\IPOW\IPOW\IPOW.Lib\IPOW.Lib\bin\Debug\Newtonsoft.Json.dll

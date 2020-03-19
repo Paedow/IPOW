@@ -2,12 +2,24 @@ using Godot;
 using System;
 using System.Text;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
-    public class CopyGrid : IGrid
+    public class Grid : IGrid
     {
         int w, h;
         bool[,] buffer;
+
+        public Grid()
+        {
+
+        }
+
+        public Grid(int w, int h)
+        {
+            this.w = w;
+            this.h = h;
+            this.buffer = new bool[w, h];
+        }
 
         public void Copy(IGrid grid)
         {
@@ -38,6 +50,11 @@ namespace Pathing
         public bool FieldBlocked(int x, int y)
         {
             return buffer[x, y];
+        }
+
+        public void SetField(int x, int y, bool blocked)
+        {
+            buffer[x, y] = blocked;
         }
 
         bool hasPoint(PointI[] array, int x, int y)

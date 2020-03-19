@@ -2,76 +2,60 @@ using Godot;
 using System;
 using Thread = System.Threading.Thread;
 
-namespace Pathing
+namespace IPOWLib.Pathing
 {
     public class AsyncPathUpdater
     {
-        bool running, update;
         Thread thread = null;
         IGrid grid;
+        Grid gridCopy;
         PathFinder pathFinder;
         SplinePath path;
         PointI[] endPoints;
-        public uint Pathversion{get; private set;} = 0;
+        public uint Pathversion { get; private set; } = 0;
+        public PathFinder PathFinder
+        {
+            get
+            {
+                return pathFinder;
+            }
+        }
 
         public AsyncPathUpdater(IGrid grid)
         {
             this.grid = grid;
-            this.running = false;
-            this.update = false;
             this.path = new SplinePath(new Vector2[0], InterpolationType.Null);
             this.pathFinder = new PathFinder(grid);
         }
 
-        public void Start()
-        {
-            thread = new Thread(loop);
-            this.running = true;
-            thread.Start();
-        }
-
-        public void Stop()
-        {
-            thread?.Abort();
-            thread = null;
-            this.running = false;
-        }
-
         public void Update(PointI[] endPoints)
         {
+            thread?.Abort();
             this.endPoints = endPoints;
-            update = true;
-            thread.Abort();
-            thread.Join();
+            gridCopy = new Grid();
+            gridCopy.Copy(this.grid);
             thread = new Thread(loop);
             thread.Start();
+        }
+
+        public void Update(IGrid grid, PointI[] endPoints)
+        {
+            this.grid = grid;
+            Update(endPoints);
         }
 
         void loop()
         {
             try
             {
-                while (running)
-                {
-                    if(update)
-                    {
-                        update = false;
-                        PointI[] tmp = new PointI[endPoints.Length];
-                        endPoints.CopyTo(tmp, 0);
-                        CopyGrid cg = new CopyGrid();
-                        cg.Copy(grid);
-                        this.pathFinder.Reset(cg);
-                        foreach(PointI end in tmp)
-                            this.pathFinder.CalcHops(end);
-                        Pathversion++;
-                    }
-                    Thread.Sleep(10);
-                }
+                PointI[] tmp = new PointI[endPoints.Length];
+                endPoints.CopyTo(tmp, 0);
+                this.pathFinder.Reset(gridCopy);
+                foreach (PointI end in tmp)
+                    this.pathFinder.CalcHops(end);
+                Pathversion++;
             }
-            catch (System.Threading.ThreadAbortException)
-            {
-                
-            }
+            catch (System.Threading.ThreadAbortException) { }
         }
 
         public bool FindPath(out PointI[] path, PointI start)

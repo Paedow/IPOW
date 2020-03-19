@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPOW", "IPOW.csproj", "{B18D35DE-690F-407F-B078-893A08AC71E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPOW", "IPOW.csproj", "{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	Tools|Any CPU = Tools|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
-		{B18D35DE-690F-407F-B078-893A08AC71E2}.Tools|Any CPU.Build.0 = Tools|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{4BEFC5CE-A7DE-4829-B540-C01EA1F4669B}.Tools|Any CPU.Build.0 = Tools|Any CPU
 	EndGlobalSection
 EndGlobal

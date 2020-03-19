@@ -1,6 +1,6 @@
 ﻿using System;
 using Godot;
-using IPOW.Pathing;
+using IPOWLib.Pathing;
 
 namespace IPOW.Tiles
 {
@@ -22,6 +22,11 @@ namespace IPOW.Tiles
         public virtual bool IsBlocked(MovementLayer layer)
         {
             return ((BlockedLayer & layer) != 0) ;
+        }
+
+        public virtual void GridReady(Grid3D parent, int x, int y)
+        {
+
         }
     }
 }

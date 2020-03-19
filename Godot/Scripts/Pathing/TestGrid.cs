@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using Pathing;
+using IPOWLib.Pathing;
 
 namespace Pathing
 {
@@ -37,7 +37,6 @@ namespace Pathing
 			end = new PointI[] { new PointI(19, 14), new PointI(1, 14) };
 
 			pathUpdater = new AsyncPathUpdater(this);
-			pathUpdater.Start();
 		}
 
 		public bool FieldBlocked(int x, int y)
