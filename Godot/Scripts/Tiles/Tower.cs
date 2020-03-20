@@ -12,5 +12,21 @@ namespace IPOW.Tiles
 		{
 			BlockedLayer = IPOWLib.Pathing.MovementLayer.Ground | IPOWLib.Pathing.MovementLayer.Water;
 		}
+
+		public override string[] GetCommands()
+		{
+			return new string[] { "Upgrade", "Remove" };
+		}
+
+		public override void RunCommand(string cmd)
+		{
+			if(cmd == "Remove")
+			{
+				if(LastTile != null)
+				{
+					ParentGrid.SetTile(LastTile, X, Y);
+				}
+			}
+		}
 	}
 }

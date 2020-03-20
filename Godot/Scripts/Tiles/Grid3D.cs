@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Mouse3D;
 using IPOWLib.Pathing;
+using IPOW.Util;
 
 namespace IPOW.Tiles
 {
@@ -48,7 +49,7 @@ namespace IPOW.Tiles
             for (int x = 5; x < Width - 10; x++)
             {
                 Tile tile = (Tile)sceneCobble.Instance();
-                SetTile(tile, x, Height/2, false);
+                SetTile(tile, x, Height / 2, false);
                 for (int y = 0; y < Height / 2 - 2; y++)
                 {
                     tile = (Tile)sceneHill.Instance();
@@ -72,6 +73,62 @@ namespace IPOW.Tiles
 
         public override void _Input(InputEvent @event)
         {
+            if (EditTool.EditingTool == EditTool.Tool.PlaceTower)
+            {
+                Input_PlaceTower(@event);
+            }
+            else if (EditTool.EditingTool == EditTool.Tool.None)
+            {
+                Input_Select(@event);
+            }
+            else
+            {
+                glowTile.Visible = false;
+            }
+        }
+
+        public void Input_Select(InputEvent _event)
+        {
+            if (_event is InputEventMouse)
+            {
+                InputEventMouse mouseEvent = (InputEventMouse)_event;
+                if (mouseEvent.ButtonMask == 1 && lastButtonMask == 0)
+                {
+                    if (GUITools.IsPointOnGUI(world.GetNode(new NodePath("GUI")), mouseEvent.GlobalPosition))
+                        return;
+                    var ray = new MouseRay(camera, mouseEvent.GlobalPosition);
+                    Tile t = ray.SendRayTile();
+                    Node panel = world.GetNode(new NodePath("GUI/TowerOptions"));
+                    while (panel.GetChildCount() > 0)
+                    {
+                        Node n = panel.GetChild(0);
+                        panel.RemoveChild(n);
+                        n.Dispose();
+                    }
+                    if (t != null)
+                    {
+                        int x = 0;
+                        foreach (string cmd in t.GetCommands())
+                        {
+                            GD.Print(cmd);
+                            Button btn = new Button();
+                            btn.Text = cmd;
+                            btn.RectPosition = new Vector2(0, x);
+                            x += (int)btn.RectSize.y;
+                            panel.AddChild(btn);
+                            var binds = new Godot.Collections.Array();
+                            binds.Add(cmd);
+                            btn.Connect("pressed", t, "RunCommand", binds);
+                        }
+                    }
+                }
+
+                lastButtonMask = mouseEvent.ButtonMask;
+            }
+        }
+
+        public void Input_PlaceTower(InputEvent @event)
+        {
             if (@event is InputEventMouse)
             {
                 InputEventMouse mouseEvent = (InputEventMouse)@event;
@@ -79,6 +136,8 @@ namespace IPOW.Tiles
                 Vector3? pos = ray.PositionOnPlane(new Plane(new Vector3(0, 0, 0), new Vector3(1, 0, 0), new Vector3(0, 0, 1)));
                 if (mouseEvent.ButtonMask == 1 && lastButtonMask == 0)
                 {
+                    if (GUITools.IsPointOnGUI(world.GetNode(new NodePath("GUI")), mouseEvent.GlobalPosition))
+                        return;
                     if (pos.HasValue && pos.Value.x > 0 && pos.Value.z > 0)
                     {
                         Vector2 gPos = new Vector2(pos.Value.x, pos.Value.z);
@@ -132,16 +191,10 @@ namespace IPOW.Tiles
             if (this.Grid[x, y] != null)
             {
                 this.RemoveChild(this.Grid[x, y]);
-                this.Grid[x, y].Dispose();
+                //this.Grid[x, y].Dispose();
             }
-            if (tile is Tile)
-            {
-                ((Tile)tile).SetPosition(this, x, y);
-            }
-            else
-            {
-                tile.Translation = new Vector3(x / 2f, 0, y / 2f);
-            }
+            tile.SetPosition(this, x, y);
+            tile.LastTile = this.Grid[x, y];
             this.Grid[x, y] = tile;
             this.AddChild(tile);
             if (update)
