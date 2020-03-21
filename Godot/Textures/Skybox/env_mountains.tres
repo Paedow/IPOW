@@ -8,3 +8,5 @@ panorama = ExtResource( 1 )
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+dof_blur_far_distance = 21.47
+adjustment_enabled = true

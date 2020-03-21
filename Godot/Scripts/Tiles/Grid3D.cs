@@ -18,6 +18,7 @@ namespace IPOW.Tiles
 
         PackedScene sceneTile, sceneTower, sceneHill, sceneCobble;
         Spatial glowTile;
+        Tile placeTile = null;
         Spatial walls;
         PointI[] endPoints;
         uint pathversion = 0;
@@ -159,6 +160,7 @@ namespace IPOW.Tiles
                         ((int)pos.Value.y),
                         ((int)pos.Value.z));
                     glowTile.Translation = iPos;
+                    placeTile.Translation = iPos;
                     if (iPos.x < 0 || iPos.z < 0 || iPos.x >= Width || iPos.z >= Height)
                     {
                         glowTile.Visible = false;
@@ -182,6 +184,19 @@ namespace IPOW.Tiles
             {
                 pathversion = pathUpdaterGround.Pathversion;
                 world.UpdatePath(pathUpdaterGround.PathFinder);
+            }
+
+            if(EditTool.EditingTool == EditTool.Tool.PlaceTower && placeTile == null)
+            {
+                placeTile = (Tile)sceneTower.Instance();
+                placeTile.State = Tile.TileState.Place;
+                AddChild(placeTile);
+            }
+            else if(EditTool.EditingTool != EditTool.Tool.PlaceTower && placeTile != null)
+            {
+                RemoveChild(placeTile);
+                placeTile.Dispose();
+                placeTile = null;
             }
         }
 
