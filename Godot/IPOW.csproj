@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Creeps\Creep.cs" />
+    <Compile Include="Scripts\GUI\Minimap.cs" />
     <Compile Include="Scripts\GUI\SelectBaseTower.cs" />
     <Compile Include="Scripts\GUI\SelectNone.cs" />
     <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Scripts\Util\EditTool.cs" />
     <Compile Include="Scripts\World.cs" />
     <Compile Include="Scripts\Creeps\GroundCreep.cs" />
+    <Compile Include="Scripts\Tiles\MinimapColors.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

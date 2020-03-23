@@ -50,7 +50,7 @@ namespace IPOW.Tiles
             for (int x = 5; x < Width - 10; x++)
             {
                 Tile tile = (Tile)sceneCobble.Instance();
-                SetTile(tile, x, Height / 2, false);
+                //SetTile(tile, x, Height / 2, false);
                 for (int y = 0; y < Height / 2 - 2; y++)
                 {
                     tile = (Tile)sceneHill.Instance();
@@ -186,13 +186,13 @@ namespace IPOW.Tiles
                 world.UpdatePath(pathUpdaterGround.PathFinder);
             }
 
-            if(EditTool.EditingTool == EditTool.Tool.PlaceTower && placeTile == null)
+            if (EditTool.EditingTool == EditTool.Tool.PlaceTower && placeTile == null)
             {
                 placeTile = (Tile)sceneTower.Instance();
                 placeTile.State = Tile.TileState.Place;
                 AddChild(placeTile);
             }
-            else if(EditTool.EditingTool != EditTool.Tool.PlaceTower && placeTile != null)
+            else if (EditTool.EditingTool != EditTool.Tool.PlaceTower && placeTile != null)
             {
                 RemoveChild(placeTile);
                 placeTile.Dispose();
@@ -246,6 +246,33 @@ namespace IPOW.Tiles
                     Grid[x, y].GridReady(this, x, y);
                 }
             }
+        }
+
+        public Rect2 DrawMinimap(Control g, Rect2 rect)
+        {
+            Vector2 offset = rect.Position;
+            float tsx = rect.Size.x / Width;
+            float tsy = rect.Size.y / Height;
+            float tileSize = Mathf.Min(tsx, tsy);
+
+            float rW = tileSize * Width;
+            float rH = tileSize * Height;
+
+            offset.x += (rect.Size.x - rW) / 2f;
+            offset.y += (rect.Size.y - rH) / 2f;
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Rect2 r = new Rect2(offset + tileSize * new Vector2(x, y), new Vector2(tileSize, tileSize));
+                    Color c = MinimapColors.NONE;
+                    if (Grid[x, y] != null) c = Grid[x, y].GetMinimapColor();
+                    g.DrawRect(r, c);
+                }
+            }
+
+            return new Rect2(offset, new Vector2(tileSize, tileSize));
         }
     }
 }

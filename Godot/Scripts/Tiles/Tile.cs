@@ -129,6 +129,11 @@ namespace IPOW.Tiles
             }
         }
 
+        public virtual Color GetMinimapColor()
+        {
+            return MinimapColors.NONE;
+        }
+
         public enum TileState { Null, Place, Running, Highlight };
     }
 }

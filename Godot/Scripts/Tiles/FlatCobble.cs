@@ -15,5 +15,10 @@ namespace IPOW.Tiles
 		{
 			base.SetPosition(parent, x, y);
 		}
+
+		public override Color GetMinimapColor()
+		{
+			return MinimapColors.COBBLE;
+		}
 	}
 }

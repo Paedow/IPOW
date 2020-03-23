@@ -32,5 +32,15 @@ namespace IPOW.Tiles
 			}
 			base.SetPosition(parent, x, y);
 		}
+
+		public override Color GetMinimapColor()
+		{
+			bool x_odd = (X % 2) == 0;
+			bool y_odd = (Y % 2) == 0;
+			if(x_odd == y_odd)
+				return MinimapColors.TILE;
+			else
+				return MinimapColors.TILE2;
+		}
 	}
 }
