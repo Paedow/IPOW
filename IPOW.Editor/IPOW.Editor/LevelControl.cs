@@ -18,6 +18,8 @@ namespace IPOW.Editor
         GLControl control;
         bool devenv;
         int levelW, levelH;
+        World world;
+        int scrollBarFactor = 5;
 
         public LevelControl()
         {
@@ -35,6 +37,10 @@ namespace IPOW.Editor
             this.Resize += LevelControl_Resize;
             xScroll.Scroll += XScroll_Scroll;
             yScroll.Scroll += YScroll_Scroll;
+
+            world = new World(25, 15);
+            SetSize();
+
         }
 
         private void YScroll_Scroll(object sender, ScrollEventArgs e)
@@ -49,23 +55,23 @@ namespace IPOW.Editor
 
         private void LevelControl_Resize(object sender, EventArgs e)
         {
-            SetSize(2000, 2000);
+            SetSize();
             control.Invalidate();
         }
 
-        public void SetSize(int width, int height)
+        public void SetSize()
         {
-            this.levelW = width;
-            this.levelH = height;
+            this.levelW = world.Width * 32;
+            this.levelH = world.Height * 32;
 
             int scrollMaxY = levelH - control.ClientSize.Height + 128;
             int scrollMaxX = levelW - control.ClientSize.Width + 128;
 
             if (scrollMaxX > 0)
-                xScroll.Maximum = scrollMaxX;
+                xScroll.Maximum = scrollMaxX / scrollBarFactor;
             xScroll.Enabled = scrollMaxX > 0;
             if (scrollMaxY > 0)
-                yScroll.Maximum = scrollMaxY;
+                yScroll.Maximum = scrollMaxY / scrollBarFactor;
             yScroll.Enabled = scrollMaxY > 0;
         }
 
@@ -77,14 +83,12 @@ namespace IPOW.Editor
             Renderer.Clear(SystemColors.ControlDark);
             Renderer.SetViewport(control.Width, control.Height);
 
-            int offsetX = xScroll.Value - 64;
-            int offsetY = yScroll.Value - 64;
+            int offsetX = xScroll.Value * scrollBarFactor - 64;
+            int offsetY = yScroll.Value * scrollBarFactor - 64;
             GL.LoadIdentity();
             GL.Translate(-offsetX, -offsetY, 0);
 
-            Renderer.FillRect(new RectangleF(0, 0, levelW, levelH), Color.White);
-            Renderer.FillRect(new RectangleF(0, 0, 32, 32), Color.Yellow);
-            Renderer.FillRect(new RectangleF(levelW-32, levelH-32, 32, 32), Color.Yellow);
+            world.Draw();
 
             control.SwapBuffers();
         }

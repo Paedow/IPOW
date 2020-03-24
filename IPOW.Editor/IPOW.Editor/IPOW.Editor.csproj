@@ -67,6 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Texture.cs" />
+    <Compile Include="Tiles\FlatTile.cs" />
+    <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="World.cs" />
     <EmbeddedResource Include="LevelControl.resx">
       <DependentUpon>LevelControl.cs</DependentUpon>
     </EmbeddedResource>
