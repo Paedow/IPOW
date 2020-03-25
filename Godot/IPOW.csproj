@@ -63,6 +63,8 @@
     <Compile Include="Scripts\GUI\Minimap.cs" />
     <Compile Include="Scripts\GUI\SelectBaseTower.cs" />
     <Compile Include="Scripts\GUI\SelectNone.cs" />
+    <Compile Include="Scripts\IO\Loader.cs" />
+    <Compile Include="Scripts\IO\LoaderScene.cs" />
     <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
     <Compile Include="Scripts\Pathing\TestGrid.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />

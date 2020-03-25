@@ -32,18 +32,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.levelControl1 = new IPOW.Editor.LevelControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.levelControl1 = new IPOW.Editor.LevelControl();
+            this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lvTiles = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +79,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvTiles);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -94,6 +97,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // levelControl1
+            // 
+            this.levelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelControl1.Location = new System.Drawing.Point(0, 0);
+            this.levelControl1.Name = "levelControl1";
+            this.levelControl1.Size = new System.Drawing.Size(634, 533);
+            this.levelControl1.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -116,12 +127,11 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // runToolStripMenuItem
+            // newToolStripMenuItem
             // 
-            this.runToolStripMenuItem.Image = global::IPOW.Editor.Properties.Resources.arrow_transition;
-            this.runToolStripMenuItem.Name = "runToolStripMenuItem";
-            this.runToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.runToolStripMenuItem.Text = "Run";
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
@@ -129,25 +139,29 @@
             this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.newToolStripMenuItem.Text = "New";
-            // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
-            // levelControl1
+            // runToolStripMenuItem
             // 
-            this.levelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.levelControl1.Location = new System.Drawing.Point(0, 0);
-            this.levelControl1.Name = "levelControl1";
-            this.levelControl1.Size = new System.Drawing.Size(634, 533);
-            this.levelControl1.TabIndex = 0;
+            this.runToolStripMenuItem.Image = global::IPOW.Editor.Properties.Resources.arrow_transition;
+            this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.runToolStripMenuItem.Text = "Run";
+            // 
+            // lvTiles
+            // 
+            this.lvTiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvTiles.HideSelection = false;
+            this.lvTiles.Location = new System.Drawing.Point(3, 3);
+            this.lvTiles.Name = "lvTiles";
+            this.lvTiles.Size = new System.Drawing.Size(304, 501);
+            this.lvTiles.TabIndex = 3;
+            this.lvTiles.UseCompatibleStateImageBehavior = false;
+            this.lvTiles.View = System.Windows.Forms.View.Tile;
             // 
             // MainWindow
             // 
@@ -164,6 +178,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -184,5 +199,6 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ListView lvTiles;
     }
 }

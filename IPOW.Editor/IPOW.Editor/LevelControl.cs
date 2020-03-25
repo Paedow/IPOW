@@ -25,11 +25,13 @@ namespace IPOW.Editor
         {
             InitializeComponent();
 
+            devenv = Process.GetCurrentProcess().ProcessName == "devenv";
+
             control = new GLControl();
             control.Dock = DockStyle.Fill;
-            container.Controls.Add(control);
 
-            devenv = Process.GetCurrentProcess().ProcessName == "devenv";
+            if(!devenv)
+                container.Controls.Add(control);
 
             if (!devenv)
                 control.Paint += Control_Paint;

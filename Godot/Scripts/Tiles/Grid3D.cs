@@ -16,7 +16,7 @@ namespace IPOW.Tiles
 
         public Tile[,] Grid { get; private set; }
 
-        PackedScene sceneTile, sceneTower, sceneHill, sceneCobble;
+        PackedScene sceneTower, sceneCobble;
         Spatial glowTile;
         Tile placeTile = null;
         Spatial walls;
@@ -26,39 +26,20 @@ namespace IPOW.Tiles
 
         AsyncPathUpdater pathUpdaterGround;
 
-        public Grid3D(World world)
+        public Grid3D(World world, int width, int height)
         {
+            this.Width = width;
+            this.Height = height;
             this.world = world;
+            this.Grid = new Tile[Width, Height];
         }
 
         public override void _Ready()
         {
             camera = GetNode<Camera>(new NodePath("../CameraRig/Camera"));
-            this.Grid = new Tile[Width, Height];
 
-            sceneTile = GD.Load<PackedScene>("res://Scenes/Tiles/FlatTile.tscn");
             sceneTower = GD.Load<PackedScene>("res://Scenes/Tiles/TestTower.tscn");
-            sceneHill = GD.Load<PackedScene>("res://Scenes/Tiles/Hill.tscn");
             sceneCobble = GD.Load<PackedScene>("res://Scenes/Tiles/FlatCobble.tscn");
-            for (int x = 0; x < Width; x++)
-                for (int y = 0; y < Height; y++)
-                {
-                    Tile tile = (Tile)sceneTile.Instance();
-                    SetTile(tile, x, y, false);
-                }
-
-            for (int x = 5; x < Width - 10; x++)
-            {
-                Tile tile = (Tile)sceneCobble.Instance();
-                //SetTile(tile, x, Height / 2, false);
-                for (int y = 0; y < Height / 2 - 2; y++)
-                {
-                    tile = (Tile)sceneHill.Instance();
-                    SetTile(tile, x, y, false);
-                    tile = (Tile)sceneHill.Instance();
-                    SetTile(tile, x, Height - y, false);
-                }
-            }
             GridReady();
 
             var sceneGlowTile = GD.Load<PackedScene>("res://Scenes/Objects/TileGlow.tscn");
