@@ -31,15 +31,16 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lvTiles = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.levelControl1 = new IPOW.Editor.LevelControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lvTiles = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.levelControl1 = new IPOW.Editor.LevelControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,6 +89,21 @@
             this.tabPage1.Text = "Tiles";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lvTiles
+            // 
+            this.lvTiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lvTiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvTiles.FullRowSelect = true;
+            this.lvTiles.HideSelection = false;
+            this.lvTiles.Location = new System.Drawing.Point(3, 3);
+            this.lvTiles.Name = "lvTiles";
+            this.lvTiles.Size = new System.Drawing.Size(304, 501);
+            this.lvTiles.TabIndex = 3;
+            this.lvTiles.UseCompatibleStateImageBehavior = false;
+            this.lvTiles.View = System.Windows.Forms.View.Details;
+            this.lvTiles.SelectedIndexChanged += new System.EventHandler(this.lvTiles_SelectedIndexChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -97,14 +113,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // levelControl1
-            // 
-            this.levelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.levelControl1.Location = new System.Drawing.Point(0, 0);
-            this.levelControl1.Name = "levelControl1";
-            this.levelControl1.Size = new System.Drawing.Size(634, 533);
-            this.levelControl1.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -130,20 +138,22 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // runToolStripMenuItem
             // 
@@ -152,16 +162,18 @@
             this.runToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.runToolStripMenuItem.Text = "Run";
             // 
-            // lvTiles
+            // columnHeader1
             // 
-            this.lvTiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvTiles.HideSelection = false;
-            this.lvTiles.Location = new System.Drawing.Point(3, 3);
-            this.lvTiles.Name = "lvTiles";
-            this.lvTiles.Size = new System.Drawing.Size(304, 501);
-            this.lvTiles.TabIndex = 3;
-            this.lvTiles.UseCompatibleStateImageBehavior = false;
-            this.lvTiles.View = System.Windows.Forms.View.Tile;
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 177;
+            // 
+            // levelControl1
+            // 
+            this.levelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelControl1.Location = new System.Drawing.Point(0, 0);
+            this.levelControl1.Name = "levelControl1";
+            this.levelControl1.Size = new System.Drawing.Size(634, 533);
+            this.levelControl1.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -200,5 +212,6 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ListView lvTiles;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

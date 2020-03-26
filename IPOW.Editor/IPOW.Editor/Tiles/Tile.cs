@@ -14,6 +14,13 @@ namespace IPOW.Editor.Tiles
         public Texture Image { get; protected set; }
         public int X { get; private set; }
         public int Y { get; private set; }
+        public string Name { get; private set; } = "null";
+
+        public Tile()
+        {
+            TN[] tns = this.GetType().GetCustomAttributes<TN>().ToArray();
+            if (tns.Length > 0) Name = tns[0].Name;
+        }
 
         public void SetPos(int x, int y)
         {
@@ -41,6 +48,15 @@ namespace IPOW.Editor.Tiles
                     }
                 }
             }
+        }
+
+        public static Tile GetTile(string name)
+        {
+            if (!Tiles.ContainsKey(name)) return null;
+            Type type = Tiles[name];
+            ConstructorInfo constructor = type.GetConstructor(new Type[0]);
+            Tile tile = (Tile)constructor.Invoke(new object[0]);
+            return tile;
         }
     }
 

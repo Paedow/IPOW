@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\Saver.cs" />
     <Compile Include="JMap\MapData.cs" />
     <Compile Include="JMap\MapLoader.cs" />
     <Compile Include="JMap\MapTileInfo.cs" />

@@ -72,6 +72,7 @@
     <Compile Include="Texture.cs" />
     <Compile Include="Tiles\FlatTile.cs" />
     <Compile Include="Tiles\Hill.cs" />
+    <Compile Include="Tiles\Spawner.cs" />
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="World.cs" />
     <EmbeddedResource Include="LevelControl.resx">

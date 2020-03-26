@@ -14,6 +14,7 @@ namespace IPOW.Editor
         [STAThread]
         static void Main()
         {
+            Tiles.Tile.Init();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
