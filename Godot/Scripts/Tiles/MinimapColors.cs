@@ -10,5 +10,6 @@ namespace IPOW.Tiles
         public static Color COBBLE { get; private set; } = Color.Color8(200, 200, 200);
         public static Color NONE { get; private set; } = Color.Color8(0, 0, 0);
         public static Color CREEP{get;private set;} = Color.Color8(255,0,0);
+        public static Color MARKER {get;private set;} = Color.Color8(0x88, 0x51, 0xFF);
     }
 }

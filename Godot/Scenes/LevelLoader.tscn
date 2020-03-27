@@ -4,3 +4,18 @@
 
 [node name="LevelLoader" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_left = 129.684
+margin_top = 98.9474
+margin_right = 957.684
+margin_bottom = 616.947
+window_title = "Datei öffnen"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.xml" )
+current_dir = "E:/Entwicklung/Godot/IPOW/IPOW/Godot"
+current_path = "E:/Entwicklung/Godot/IPOW/IPOW/Godot/"
+__meta__ = {
+"_edit_use_anchors_": false
+}

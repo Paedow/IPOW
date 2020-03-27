@@ -44,6 +44,7 @@ namespace IPOW.IO
             scenes = new Dictionary<string, PackedScene>();
             addScene("FlatTile", "res://Scenes/Tiles/FlatTile.tscn");
             addScene("Hill", "res://Scenes/Tiles/Hill.tscn");
+            addScene("Spawner", "res://Scenes/Tiles/Spawner.tscn");
         }
 
         static void addScene(string name, string path)
