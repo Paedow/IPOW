@@ -52,5 +52,14 @@ namespace IPOW.IO
             PackedScene scene = GD.Load<PackedScene>(path);
             scenes.Add(name, scene);
         }
+
+        public static void Load(string path)
+        {
+            GD.Print("Loading Level: '", path, "'");
+			string text = System.IO.File.ReadAllText(path);
+			WorldDescriptor wd = IPOWLib.IO.Loader.Load(text);
+			World w = Loader.LoadWorld(wd);
+			RootNode.GetNode().SetScene(w);
+        }
     }
 }

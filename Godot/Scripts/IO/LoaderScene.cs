@@ -24,11 +24,12 @@ namespace IPOW.IO
 
 		public void Load(string path)
 		{
-			GD.Print("Loading Level: '", path, "'");
+			Loader.Load(path);
+			/*GD.Print("Loading Level: '", path, "'");
 			string text = System.IO.File.ReadAllText(path);
 			WorldDescriptor wd = IPOWLib.IO.Loader.Load(text);
 			World w = Loader.LoadWorld(wd);
-			AddChild(w);
+			RootNode.GetNode().SetScene(w);*/
 		}
 	}
 }
