@@ -81,6 +81,7 @@ namespace IPOW.Editor
                     {
                         for(int y = rect.Y;y<rect.Bottom;y++)
                         {
+                            if (x < 0 || x >= World.Width || y < 0 || y >= World.Height) continue;
                             Tiles.Tile tile = (Tiles.Tile)constructor.Invoke(new object[0]);
                             tile.SetPos(x, y);
                             World.Grid[x, y] = tile;
