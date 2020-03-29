@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\Saver.cs" />
     <Compile Include="JMap\MapData.cs" />
     <Compile Include="JMap\MapLoader.cs" />
     <Compile Include="JMap\MapTileInfo.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="Pathing\PointI.cs" />
     <Compile Include="Pathing\Spline.cs" />
     <Compile Include="Pathing\SplinePath.cs" />
+    <Compile Include="IO\WorldDescriptor.cs" />
+    <Compile Include="IO\Loader.cs" />
+    <Compile Include="IO\TileDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,12 +12,7 @@ public class World : Node
 
 	public override void _Ready()
 	{
-		Grid = new Grid3D(this);
 		Creeps = new List<Creep>();
-		this.AddChild(Grid);
-
-		Creep creep = (Creep)GD.Load<PackedScene>("res://Scenes/Creeps/GroundCreep.tscn").Instance();
-		SpawnCreep(creep, 1, 10);
 	}
 
 	public void SpawnCreep(Creep creep, int x, int y)

@@ -1,0 +1,7 @@
+<World w="25" h="15">
+	<BaseTile value="FlatTile" />
+	<Tile x="2" y="3" type="Hill" />
+	<Tile x="3" y="3" type="Hill" />
+	<Tile x="3" y="2" type="Hill" />
+	<Tile x="2" y="2" type="Hill" />
+</World>

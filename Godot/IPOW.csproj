@@ -60,16 +60,28 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\Creeps\Creep.cs" />
+    <Compile Include="Scripts\GUI\LoadLevelDialogue.cs" />
+    <Compile Include="Scripts\GUI\Minimap.cs" />
+    <Compile Include="Scripts\GUI\SelectBaseTower.cs" />
+    <Compile Include="Scripts\GUI\SelectNone.cs" />
+    <Compile Include="Scripts\IO\Loader.cs" />
+    <Compile Include="Scripts\IO\LoaderScene.cs" />
     <Compile Include="Scripts\Mouse3D\MouseRay.cs" />
     <Compile Include="Scripts\Pathing\TestGrid.cs" />
+    <Compile Include="Scripts\RootNode.cs" />
     <Compile Include="Scripts\Tiles\FlatTile.cs" />
+    <Compile Include="Scripts\Tiles\FlatCobble.cs" />
     <Compile Include="Scripts\Tiles\Grid3D.cs" />
     <Compile Include="Scripts\Tiles\Hill.cs" />
+    <Compile Include="Scripts\Tiles\Spawner.cs" />
     <Compile Include="Scripts\Tiles\SurroundingTilemap.cs" />
     <Compile Include="Scripts\Tiles\Tile.cs" />
     <Compile Include="Scripts\Tiles\Tower.cs" />
+    <Compile Include="Scripts\Util\GUITools.cs" />
+    <Compile Include="Scripts\Util\EditTool.cs" />
     <Compile Include="Scripts\World.cs" />
     <Compile Include="Scripts\Creeps\GroundCreep.cs" />
+    <Compile Include="Scripts\Tiles\MinimapColors.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

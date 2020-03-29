@@ -8,6 +8,7 @@ namespace IPOW.Tiles
 	{
 		public override void _Ready()
 		{
+			base.CanPlaceOn = true;
 			/*MeshInstance mesh = this.GetNode<MeshInstance>(new NodePath("MeshInstance"));
 			ShaderMaterial mat = (ShaderMaterial)mesh.GetSurfaceMaterial(0);
 			mat.SetShaderParam("tileOffset", new Vector2(tEST.X, tEST.Y));*/
@@ -30,6 +31,16 @@ namespace IPOW.Tiles
 				dark.Visible = false;
 			}
 			base.SetPosition(parent, x, y);
+		}
+
+		public override Color GetMinimapColor()
+		{
+			bool x_odd = (X % 2) == 0;
+			bool y_odd = (Y % 2) == 0;
+			if(x_odd == y_odd)
+				return MinimapColors.TILE;
+			else
+				return MinimapColors.TILE2;
 		}
 	}
 }

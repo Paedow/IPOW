@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Mouse3D;
 using IPOWLib.Pathing;
+using IPOW.Util;
 
 namespace IPOW.Tiles
 {
@@ -15,8 +16,9 @@ namespace IPOW.Tiles
 
         public Tile[,] Grid { get; private set; }
 
-        PackedScene sceneTile, sceneTower, sceneHill;
+        PackedScene sceneTower, sceneCobble;
         Spatial glowTile;
+        Tile placeTile = null;
         Spatial walls;
         PointI[] endPoints;
         uint pathversion = 0;
@@ -24,36 +26,20 @@ namespace IPOW.Tiles
 
         AsyncPathUpdater pathUpdaterGround;
 
-        public Grid3D(World world)
+        public Grid3D(World world, int width, int height)
         {
+            this.Width = width;
+            this.Height = height;
             this.world = world;
+            this.Grid = new Tile[Width, Height];
         }
 
         public override void _Ready()
         {
             camera = GetNode<Camera>(new NodePath("../CameraRig/Camera"));
-            this.Grid = new Tile[Width, Height];
 
-            sceneTile = GD.Load<PackedScene>("res://Scenes/Tiles/FlatTile.tscn");
             sceneTower = GD.Load<PackedScene>("res://Scenes/Tiles/TestTower.tscn");
-            sceneHill = GD.Load<PackedScene>("res://Scenes/Tiles/Hill.tscn");
-            for (int x = 0; x < Width; x++)
-                for (int y = 0; y < Height; y++)
-                {
-                    Tile tile = (Tile)sceneTile.Instance();
-                    SetTile(tile, x, y, false);
-                }
-
-            for (int x = 5; x < Width - 10; x++)
-            {
-                for (int y = 0; y < Height / 2 - 2; y++)
-                {
-                    Tile tile = (Tile)sceneHill.Instance();
-                    SetTile(tile, x, y, false);
-                    tile = (Tile)sceneHill.Instance();
-                    SetTile(tile, x, Height - y, false);
-                }
-            }
+            sceneCobble = GD.Load<PackedScene>("res://Scenes/Tiles/FlatCobble.tscn");
             GridReady();
 
             var sceneGlowTile = GD.Load<PackedScene>("res://Scenes/Objects/TileGlow.tscn");
@@ -69,6 +55,62 @@ namespace IPOW.Tiles
 
         public override void _Input(InputEvent @event)
         {
+            if (EditTool.EditingTool == EditTool.Tool.PlaceTower)
+            {
+                Input_PlaceTower(@event);
+            }
+            else if (EditTool.EditingTool == EditTool.Tool.None)
+            {
+                Input_Select(@event);
+            }
+            else
+            {
+                glowTile.Visible = false;
+            }
+        }
+
+        public void Input_Select(InputEvent _event)
+        {
+            if (_event is InputEventMouse)
+            {
+                InputEventMouse mouseEvent = (InputEventMouse)_event;
+                if (mouseEvent.ButtonMask == 1 && lastButtonMask == 0)
+                {
+                    if (GUITools.IsPointOnGUI(world.GetNode(new NodePath("GUI")), mouseEvent.GlobalPosition))
+                        return;
+                    var ray = new MouseRay(camera, mouseEvent.GlobalPosition);
+                    Tile t = ray.SendRayTile();
+                    Node panel = world.GetNode(new NodePath("GUI/TowerOptions"));
+                    while (panel.GetChildCount() > 0)
+                    {
+                        Node n = panel.GetChild(0);
+                        panel.RemoveChild(n);
+                        n.Dispose();
+                    }
+                    if (t != null)
+                    {
+                        int x = 0;
+                        foreach (string cmd in t.GetCommands())
+                        {
+                            GD.Print(cmd);
+                            Button btn = new Button();
+                            btn.Text = cmd;
+                            btn.RectPosition = new Vector2(0, x);
+                            x += (int)btn.RectSize.y;
+                            panel.AddChild(btn);
+                            var binds = new Godot.Collections.Array();
+                            binds.Add(cmd);
+                            btn.Connect("pressed", t, "RunCommand", binds);
+                        }
+                    }
+                }
+
+                lastButtonMask = mouseEvent.ButtonMask;
+            }
+        }
+
+        public void Input_PlaceTower(InputEvent @event)
+        {
             if (@event is InputEventMouse)
             {
                 InputEventMouse mouseEvent = (InputEventMouse)@event;
@@ -76,15 +118,19 @@ namespace IPOW.Tiles
                 Vector3? pos = ray.PositionOnPlane(new Plane(new Vector3(0, 0, 0), new Vector3(1, 0, 0), new Vector3(0, 0, 1)));
                 if (mouseEvent.ButtonMask == 1 && lastButtonMask == 0)
                 {
+                    if (GUITools.IsPointOnGUI(world.GetNode(new NodePath("GUI")), mouseEvent.GlobalPosition))
+                        return;
                     if (pos.HasValue && pos.Value.x > 0 && pos.Value.z > 0)
                     {
                         Vector2 gPos = new Vector2(pos.Value.x, pos.Value.z);
                         gPos.x = (int)(gPos.x);
                         gPos.y = (int)(gPos.y);
-                        GD.Print(gPos);
-                        Tile tile = (Tile)sceneTower.Instance();
-                        SetTile(tile, (int)gPos.x, (int)gPos.y);
-                        pathUpdaterGround.Update(GetGrid(MovementLayer.Ground), endPoints);
+                        if (Grid[(int)gPos.x, (int)gPos.y].CanPlaceOn)
+                        {
+                            Tile tile = (Tile)sceneTower.Instance();
+                            SetTile(tile, (int)gPos.x, (int)gPos.y);
+                            pathUpdaterGround.Update(GetGrid(MovementLayer.Ground), endPoints);
+                        }
                     }
                 }
 
@@ -95,6 +141,7 @@ namespace IPOW.Tiles
                         ((int)pos.Value.y),
                         ((int)pos.Value.z));
                     glowTile.Translation = iPos;
+                    placeTile.Translation = iPos;
                     if (iPos.x < 0 || iPos.z < 0 || iPos.x >= Width || iPos.z >= Height)
                     {
                         glowTile.Visible = false;
@@ -102,6 +149,9 @@ namespace IPOW.Tiles
                     else
                     {
                         glowTile.Visible = true;
+                        Tile t = Grid[(int)iPos.x, (int)iPos.z];
+                        if (t.CanPlaceOn) glowTile.Call("blue");
+                        else glowTile.Call("red");
                     }
                 }
 
@@ -116,6 +166,19 @@ namespace IPOW.Tiles
                 pathversion = pathUpdaterGround.Pathversion;
                 world.UpdatePath(pathUpdaterGround.PathFinder);
             }
+
+            if (EditTool.EditingTool == EditTool.Tool.PlaceTower && placeTile == null)
+            {
+                placeTile = (Tile)sceneTower.Instance();
+                placeTile.State = Tile.TileState.Place;
+                AddChild(placeTile);
+            }
+            else if (EditTool.EditingTool != EditTool.Tool.PlaceTower && placeTile != null)
+            {
+                RemoveChild(placeTile);
+                placeTile.Dispose();
+                placeTile = null;
+            }
         }
 
         public void SetTile(Tile tile, int x, int y, bool update = true)
@@ -124,16 +187,10 @@ namespace IPOW.Tiles
             if (this.Grid[x, y] != null)
             {
                 this.RemoveChild(this.Grid[x, y]);
-                this.Grid[x, y].Dispose();
+                //this.Grid[x, y].Dispose();
             }
-            if (tile is Tile)
-            {
-                ((Tile)tile).SetPosition(this, x, y);
-            }
-            else
-            {
-                tile.Translation = new Vector3(x / 2f, 0, y / 2f);
-            }
+            tile.SetPosition(this, x, y);
+            tile.LastTile = this.Grid[x, y];
             this.Grid[x, y] = tile;
             this.AddChild(tile);
             if (update)
@@ -170,6 +227,33 @@ namespace IPOW.Tiles
                     Grid[x, y].GridReady(this, x, y);
                 }
             }
+        }
+
+        public Rect2 DrawMinimap(Control g, Rect2 rect)
+        {
+            Vector2 offset = rect.Position;
+            float tsx = rect.Size.x / Width;
+            float tsy = rect.Size.y / Height;
+            float tileSize = Mathf.Min(tsx, tsy);
+
+            float rW = tileSize * Width;
+            float rH = tileSize * Height;
+
+            offset.x += (rect.Size.x - rW) / 2f;
+            offset.y += (rect.Size.y - rH) / 2f;
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Rect2 r = new Rect2(offset + tileSize * new Vector2(x, y), new Vector2(tileSize, tileSize));
+                    Color c = MinimapColors.NONE;
+                    if (Grid[x, y] != null) c = Grid[x, y].GetMinimapColor();
+                    g.DrawRect(r, c);
+                }
+            }
+
+            return new Rect2(offset, new Vector2(tileSize, tileSize));
         }
     }
 }
