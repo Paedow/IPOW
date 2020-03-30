@@ -22,16 +22,18 @@ namespace IPOW.Editor
         public World World { get; private set; }
         int scrollBarFactor = 5;
         bool leftDown = false;
-        Point pos1;
-        Point pos2;
+        Point pos1, pos2, posC;
         Type type = null;
+
+        Texture selector, cursor;
 
 
         public LevelControl()
         {
-            InitializeComponent();
-
             devenv = Process.GetCurrentProcess().ProcessName == "devenv";
+            if (devenv) return;
+
+            InitializeComponent();
 
             control = new GLControl();
             control.Dock = DockStyle.Fill;
@@ -54,6 +56,12 @@ namespace IPOW.Editor
             control.MouseMove += LevelControl_MouseMove;
         }
 
+        public void Initialize()
+        {
+            selector = new Texture(Properties.Resources.HT);
+            cursor = new Texture(Properties.Resources.Cursor);
+        }
+
         private void LevelControl_MouseMove(object sender, MouseEventArgs e)
         {
             Point pos = getPos(e.Location);
@@ -61,6 +69,11 @@ namespace IPOW.Editor
             {
                 pos2 = pos;
                 leftDown = true;
+                control.Invalidate();
+            }
+            if(posC != pos)
+            {
+                posC = pos;
                 control.Invalidate();
             }
         }
@@ -154,10 +167,22 @@ namespace IPOW.Editor
             int scrollMaxX = levelW - control.ClientSize.Width + 128;
 
             if (scrollMaxX > 0)
+            {
                 xScroll.Maximum = scrollMaxX / scrollBarFactor;
+            }
+            else
+            {
+                xScroll.Value = 0;
+            }
             xScroll.Enabled = scrollMaxX > 0;
             if (scrollMaxY > 0)
+            {
                 yScroll.Maximum = scrollMaxY / scrollBarFactor;
+            }
+            else
+            {
+                yScroll.Value = 0;
+            }
             yScroll.Enabled = scrollMaxY > 0;
         }
 
@@ -179,8 +204,10 @@ namespace IPOW.Editor
             if(leftDown)
             {
                 RectangleF rect = getRect(pos1, pos2, 32);
-                Renderer.FillRect(rect, Color.FromArgb(100, 0, 100, 255));
+                Renderer.DrawImage(rect, selector, new SizeF(32, 32));
             }
+            RectangleF rectCursor = new RectangleF(posC.X * 32, posC.Y * 32, 32, 32);
+            Renderer.DrawImage(rectCursor, cursor);
 
             control.SwapBuffers();
         }

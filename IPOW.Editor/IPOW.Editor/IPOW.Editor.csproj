@@ -109,5 +109,11 @@
   <ItemGroup>
     <None Include="Resources\arrow-transition.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

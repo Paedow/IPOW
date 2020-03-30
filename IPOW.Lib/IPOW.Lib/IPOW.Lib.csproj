@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\Saver.cs" />
+    <Compile Include="IO\WaveDescriptor.cs" />
     <Compile Include="JMap\MapData.cs" />
     <Compile Include="JMap\MapLoader.cs" />
     <Compile Include="JMap\MapTileInfo.cs" />

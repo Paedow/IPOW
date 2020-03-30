@@ -45,6 +45,19 @@ namespace IPOWLib.IO
                     }
                 }
 
+                for(int i = 0; i < world.Waves.Length;i++)
+                {
+                    xml.WriteStartElement("Wave");
+                    xml.WriteAttributeString("ticks", "" + world.Waves[i].TicksToSpawn);
+                    for(int b = 0; b < world.Waves[i].Enemies.Length; b++)
+                    {
+                        xml.WriteStartElement("Enemy");
+                        xml.WriteAttributeString("type", world.Waves[i].Enemies[b]);
+                        xml.WriteEndElement();
+                    }
+                    xml.WriteEndElement();
+                }
+
                 xml.WriteEndElement();
             }
 

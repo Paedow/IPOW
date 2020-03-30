@@ -27,14 +27,14 @@ namespace IPOW.Editor
             GL.End();
         }
 
-        public static void FillRectTexCoord(RectangleF rect, Color color)
+        public static void FillRectTexCoord(RectangleF rect, Color color, float tilingX, float tilingY)
         {
             GL.Color3(color);
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0, 0); GL.Vertex2(rect.Left, rect.Top);
-            GL.TexCoord2(1, 0); GL.Vertex2(rect.Right, rect.Top);
-            GL.TexCoord2(1, 1); GL.Vertex2(rect.Right, rect.Bottom);
-            GL.TexCoord2(0, 1); GL.Vertex2(rect.Left, rect.Bottom);
+            GL.TexCoord2(tilingX, 0); GL.Vertex2(rect.Right, rect.Top);
+            GL.TexCoord2(tilingX, tilingY); GL.Vertex2(rect.Right, rect.Bottom);
+            GL.TexCoord2(0, tilingY); GL.Vertex2(rect.Left, rect.Bottom);
             GL.End();
         }
 
@@ -42,7 +42,15 @@ namespace IPOW.Editor
         {
             GL.Enable(EnableCap.Texture2D);
             GL.BindTexture(TextureTarget.Texture2D, texture.GLid);
-            FillRectTexCoord(rect, Color.White);
+            FillRectTexCoord(rect, Color.White, 1, 1);
+            GL.Disable(EnableCap.Texture2D);
+        }
+
+        public static void DrawImage(RectangleF rect, Texture texture, SizeF destSize)
+        {
+            GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, texture.GLid);
+            FillRectTexCoord(rect, Color.White, rect.Width / destSize.Width, rect.Height / destSize.Height);
             GL.Disable(EnableCap.Texture2D);
         }
 

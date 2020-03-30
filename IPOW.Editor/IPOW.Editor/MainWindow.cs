@@ -26,6 +26,13 @@ namespace IPOW.Editor
                 itm.Text = tile;
                 lvTiles.Items.Add(itm);
             }
+
+            this.Shown += MainWindow_Shown;
+        }
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            levelControl1.Initialize();
         }
 
         private void lvTiles_SelectedIndexChanged(object sender, EventArgs e)

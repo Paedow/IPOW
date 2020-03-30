@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Xml;
 using System.IO;
+using System.Collections.Generic;
 
 namespace IPOWLib.IO
 {
@@ -13,6 +14,10 @@ namespace IPOWLib.IO
             StringReader str = new StringReader(text);
             using(XmlReader xml = XmlReader.Create(str))
             {
+                List<string> currentWave = new List<string>();
+                int currentWaveTicks = 0;
+                List<WaveDescriptor> waves = new List<WaveDescriptor>();
+
                 while(xml.Read())
                 {
                     switch(xml.NodeType)
@@ -48,10 +53,33 @@ namespace IPOWLib.IO
                                     TileDescriptor tile = TileDescriptor.Create(type);
                                     world.Tiles[x, y] = tile;
                                 }
+                                else if(xml.Name == "Wave")
+                                {
+                                    currentWave = new List<string>();
+                                    string ticks = xml.GetAttribute("ticks");
+                                    int.TryParse(ticks, out currentWaveTicks);
+                                }
+                                else if(xml.Name == "Enemy")
+                                {
+                                    string type = xml.GetAttribute("type");
+                                    currentWave.Add(type);
+                                }
+                            }
+                            break;
+                        case XmlNodeType.EndElement:
+                            {
+                                if(xml.Name == "Wave")
+                                {
+                                    WaveDescriptor wave = new WaveDescriptor();
+                                    wave.Enemies = currentWave.ToArray();
+                                    wave.TicksToSpawn = currentWaveTicks;
+                                    waves.Add(wave);
+                                }
                             }
                             break;
                     }
                 }
+                world.Waves = waves.ToArray();
             }
             return world;
         }
